@@ -22,8 +22,8 @@ const App: React.FC = () => {
   const columns = [
     {
       title: 'ID Producto',
-      dataIndex: 'idProduct',
-      key: 'idProduct',
+      dataIndex: 'idproducto',
+      key: 'idproducto',
     },
     {
       title: 'Descripción',
