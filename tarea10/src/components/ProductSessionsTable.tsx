@@ -2,9 +2,20 @@ import { Table } from "antd";
 import { useEffect, useState } from "react";
 import { ProductSession } from "../models/productSession";
 import { getProductSessions } from "../services/productSession";
+import { Button, Drawer } from 'antd';
+
 
 const ProductSessionsTable: React.FC = () => {
 	const [productSessions, setProductSessions] = useState<ProductSession[]>([]);
+	const [open, setOpen] = useState(false);
+
+	const showDrawer = () => {
+	  setOpen(true);
+	};
+  
+	const onClose = () => {
+	  setOpen(false);
+	};
 
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -39,6 +50,14 @@ const ProductSessionsTable: React.FC = () => {
 
 	return (
 		<>
+		      <Button type="primary" onClick={showDrawer}>
+        Open
+      </Button>
+      <Drawer title="Basic Drawer" onClose={onClose} open={open}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
 			<Table columns={columns} dataSource={productSessions} size={'large'} style={{ width: '100%' }}/>
 		</>
 	);

@@ -1,11 +1,20 @@
 import { Table } from "antd";
 import { useEffect, useState } from "react";
+import { Button, Drawer } from 'antd';
 import { Customer } from "../models/customer";
 import { getCustomers } from "../services/customer";
 
 const CustomersTable: React.FC = () => {
 	const [customers, setCustomers] = useState<Customer[]>([]);
+  const [open, setOpen] = useState(false);
 
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
 	useEffect(() => {
 		const fetchProducts = async () => {
 			try {
@@ -94,6 +103,14 @@ const CustomersTable: React.FC = () => {
 
 	return (
 		<>
+          <Button type="primary" onClick={showDrawer}>
+        Open
+      </Button>
+      <Drawer title="Basic Drawer" onClose={onClose} open={open}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
 			<Table columns={columns} dataSource={customers} size={'large'} style={{ width: '100%' }}/>
 		</>
 	);

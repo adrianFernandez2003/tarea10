@@ -1,11 +1,20 @@
 import { Table } from "antd";
 import { useEffect, useState } from "react";
+import { Button, Drawer } from 'antd';
 import { Gender } from "../models/gender";
 import { getGenders } from "../services/gender";
 
 const GendersTable: React.FC = () => {
 	const [genders, setGenders] = useState<Gender[]>([]);
+  const [open, setOpen] = useState(false);
 
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
 	useEffect(() => {
 		const fetchProducts = async () => {
 			try {
@@ -64,6 +73,14 @@ const GendersTable: React.FC = () => {
 
 	return (
 		<>
+          <Button type="primary" onClick={showDrawer}>
+        Open
+      </Button>
+      <Drawer title="Basic Drawer" onClose={onClose} open={open}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
 			<Table columns={columns} dataSource={genders} size={'large'} style={{ width: '100%' }}/>
 		</>
 	);
