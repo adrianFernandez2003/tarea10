@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Drawer, Form, Input } from 'antd';
 import { Category } from "../models/category";
 import { getCategories } from "../services/category";
+import DrawerFooter from "./DrawerFooter";
 
 const CategoryTable: React.FC = () => {
 	const [categories, setCategories] = useState<Category[]>([]);
@@ -76,24 +77,9 @@ const CategoryTable: React.FC = () => {
           <Button type="primary" onClick={showDrawer}>
         Open
       </Button>
-      <Drawer title="Basic Drawer" onClose={onClose} open={open}>
+      <Drawer title="Basic Drawer" onClose={onClose} open={open} footer={<DrawerFooter />}>
       <Form>
-          <Form.Item label='codigo postal' name='codigoPostal' rules={[{ required: true, message: 'Ingrese su codigo postal' }]}>
-            <Input/>
-          </Form.Item>
-          <Form.Item label='calle' name='calle' rules={[{ required: true, message: 'Ingrese su calle' }]}>
-            <Input/>
-          </Form.Item>
-          <Form.Item label='colonia' name='colonia' rules={[{ required: true, message: 'Ingrese su colonia' }]}>
-            <Input/>
-          </Form.Item>
-          <Form.Item label='numero exterior' name='numext' rules={[{ required: true, message: 'Ingrese su numero exterior' }]}>
-            <Input/>
-          </Form.Item>
-          <Form.Item label='numero interior' name='numint' rules={[{ required: true, message: 'Ingrese su numero interior' }]}>
-            <Input/>
-          </Form.Item>
-          <Form.Item label='ciudad' name='ciudad' rules={[{ required: true, message: 'Ingrese su ciudad' }]}>
+          <Form.Item label='nombre de la categoria' name='nombre' rules={[{ required: true, message: 'Ingrese el nombre de la categoria' }]}>
             <Input/>
           </Form.Item>
         </Form>

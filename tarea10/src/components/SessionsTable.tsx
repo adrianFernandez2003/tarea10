@@ -2,8 +2,8 @@ import { Table } from "antd";
 import { useEffect, useState } from "react";
 import { Session } from "../models/session";
 import { getSessions } from "../services/session";
-import { Button, Drawer } from 'antd';
-
+import { Button, Drawer, Form, Input } from 'antd';
+import DrawerFooter from "./DrawerFooter";
 
 const SessionsTable: React.FC = () => {
 	const [sessions, setSessions] = useState<Session[]>([]);
@@ -93,10 +93,18 @@ const SessionsTable: React.FC = () => {
           <Button type="primary" onClick={showDrawer}>
         Open
       </Button>
-      <Drawer title="Basic Drawer" onClose={onClose} open={open}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Drawer title="Basic Drawer" onClose={onClose} open={open} footer={<DrawerFooter />}>
+      <Form>
+          <Form.Item label='fecha de sesion' name='fechasesion' rules={[{ required: true, message: 'Ingrese una fecha' }]}>
+            <Input/>
+          </Form.Item>
+          <Form.Item label='hora de sesion' name='horasesion' rules={[{ required: true, message: 'Ingrese una hora de sesion' }]}>
+            <Input/>
+          </Form.Item>
+          <Form.Item label='fecha de venta' name='fechaventa' rules={[{ required: true, message: 'Ingrese una fecha de venta' }]}>
+            <Input/>
+          </Form.Item>
+        </Form>
       </Drawer>
 			<Table columns={columns} dataSource={sessions} size={'large'} style={{ width: '100%' }}/>
 		</>

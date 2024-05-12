@@ -1,8 +1,9 @@
 import { Table } from "antd";
 import { useEffect, useState } from "react";
-import { Button, Drawer } from 'antd';
+import { Button, Drawer, Form, Input  } from 'antd';
 import { Customer } from "../models/customer";
 import { getCustomers } from "../services/customer";
+import DrawerFooter from "./DrawerFooter";
 
 const CustomersTable: React.FC = () => {
 	const [customers, setCustomers] = useState<Customer[]>([]);
@@ -106,10 +107,24 @@ const CustomersTable: React.FC = () => {
           <Button type="primary" onClick={showDrawer}>
         Open
       </Button>
-      <Drawer title="Basic Drawer" onClose={onClose} open={open}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Drawer title="Basic Drawer" onClose={onClose} open={open} footer={<DrawerFooter />}>
+      <Form>
+          <Form.Item label='nombre' name='nombre' rules={[{ required: true, message: 'Ingrese el nombre del cliente' }]}>
+            <Input/>
+          </Form.Item>
+          <Form.Item label='apellido' name='apellido' rules={[{ required: true, message: 'Ingrese el apellido del cliente' }]}>
+            <Input/>
+          </Form.Item>
+          <Form.Item label='fecha de nacimiento' name='fechanac' rules={[{ required: true, message: 'Ingrese la fecha de nacimiento' }]}>
+            <Input/>
+          </Form.Item>
+          <Form.Item label='telefono' name='telefono' rules={[{ required: true, message: 'Ingrese el telefono' }]}>
+            <Input/>
+          </Form.Item>
+          <Form.Item label='correo' name='correo' rules={[{ required: true, message: 'Ingrese el correo' }]}>
+            <Input/>
+          </Form.Item>
+        </Form>
       </Drawer>
 			<Table columns={columns} dataSource={customers} size={'large'} style={{ width: '100%' }}/>
 		</>

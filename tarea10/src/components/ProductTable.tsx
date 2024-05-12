@@ -2,7 +2,8 @@ import { Table } from "antd";
 import { useEffect, useState } from "react";
 import { Product } from "../models/product";
 import { getProducts } from "../services/product";
-import { Button, Drawer } from 'antd';
+import { Button, Drawer, Form, Input } from 'antd';
+import DrawerFooter from "./DrawerFooter";
 
 
 const ProductTable: React.FC = () => {
@@ -63,10 +64,15 @@ const ProductTable: React.FC = () => {
 		      <Button type="primary" onClick={showDrawer}>
         Open
       </Button>
-      <Drawer title="Basic Drawer" onClose={onClose} open={open}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Drawer title="Basic Drawer" onClose={onClose} open={open} footer={<DrawerFooter />}>
+      <Form>
+          <Form.Item label='descripcion' name='descripcion' rules={[{ required: true, message: 'Ingrese una descripcion' }]}>
+            <Input/>
+          </Form.Item>
+          <Form.Item label='precio' name='precio' rules={[{ required: true, message: 'Ingrese un precio' }]}>
+            <Input/>
+          </Form.Item>
+        </Form>
       </Drawer>
 			<Table columns={columns} dataSource={products} size={'large'} style={{ width: '100%' }}/>
 		</>

@@ -2,8 +2,8 @@ import { Table } from "antd";
 import { useEffect, useState } from "react";
 import { User } from "../models/user";
 import { getUsers } from "../services/user";
-import { Button, Drawer } from 'antd';
-
+import { Button, Drawer, Form, Input } from 'antd';
+import DrawerFooter from "./DrawerFooter";
 
 const UsersTable: React.FC = () => {
 	const [users, setUsers] = useState<User[]>([]);
@@ -63,10 +63,12 @@ const UsersTable: React.FC = () => {
           <Button type="primary" onClick={showDrawer}>
         Open
       </Button>
-      <Drawer title="Basic Drawer" onClose={onClose} open={open}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Drawer title="Basic Drawer" onClose={onClose} open={open} footer={<DrawerFooter />}>
+      <Form>
+          <Form.Item label='nombre' name='nombre' rules={[{ required: true, message: 'Ingrese el nombre del usuario' }]}>
+            <Input/>
+          </Form.Item>
+        </Form>
       </Drawer>
 			<Table columns={columns} dataSource={users} size={'large'} style={{ width: '100%' }}/>
 		</>

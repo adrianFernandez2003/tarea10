@@ -1,8 +1,9 @@
 import { Table } from "antd";
 import { useEffect, useState } from "react";
-import { Button, Drawer } from 'antd';
+import { Button, Drawer, Form, Input } from 'antd';
 import { Gender } from "../models/gender";
 import { getGenders } from "../services/gender";
+import DrawerFooter from "./DrawerFooter";
 
 const GendersTable: React.FC = () => {
 	const [genders, setGenders] = useState<Gender[]>([]);
@@ -76,10 +77,12 @@ const GendersTable: React.FC = () => {
           <Button type="primary" onClick={showDrawer}>
         Open
       </Button>
-      <Drawer title="Basic Drawer" onClose={onClose} open={open}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Drawer title="Basic Drawer" onClose={onClose} open={open} footer={<DrawerFooter />}>
+      <Form>
+          <Form.Item label='genero' name='genero' rules={[{ required: true, message: 'Ingrese un genero' }]}>
+            <Input/>
+          </Form.Item>
+        </Form>
       </Drawer>
 			<Table columns={columns} dataSource={genders} size={'large'} style={{ width: '100%' }}/>
 		</>
