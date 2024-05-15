@@ -1,15 +1,15 @@
 export interface Adress {
-  idDireccion: number;
-  codigoPostal: string;
+  iddireccion?: number;
+  codigopostal: string;
   calle: string;
   colonia: string;
-  numExt: string;
-  numInt: string;
+  numext: string;
+  numint: string;
   ciudad: string;
-  fechaCreacion?: Date | null;
+  fechacreacion?: Date | null;
   fechaActualizacion?: Date | null;
-  fk_creadoPor: number;
+  fk_creadoPor?: number;
   fk_actualizadoPor?: number;
   fechaEliminacion?: Date | null;
-  fk_eliminadoPor: number;
+  fk_eliminadoSPor?: number;
   }

@@ -12,3 +12,7 @@ export const getAdresses = async (): Promise<Adress[]> => {
   return data || []; 
 }
 
+export const createDireccion = async (adress: Adress): Promise<void> => {
+  const { error} = await supabase.from("direccion").insert(adress);
+  if (error) throw error;
+}
