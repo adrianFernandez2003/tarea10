@@ -1,14 +1,14 @@
 export interface Session {
-  idSesion: number;
-  fechaSesion?: Date | null;
-  horaSesion: Date | null;
-  fk_cliente: number;
-  fechaVenta?: Date | null;
-  fechaCreacion?: Date | null;
-  fechaActualizacion?: Date | null;
-  fk_creadoPor: number;
-  fk_actualizadoPor?: number;
-  fechaEliminacion?: Date | null;
-  fk_eliminadoPor: number;
+  idsesion?: number;
+  fechasesion?: Date | null;
+  horasesion?: Date | null;
+  fk_cliente?: number;
+  fechaventa?: Date | null;
+  fechacreacion ?: Date | null;
+  fechaactualizacion?: Date | null;
+  fk_creadopor?: number;
+  fk_actualizadopor?: number;
+  fechaeliminacion?: Date | null;
+  fk_eliminadopor?: number;
 
   }

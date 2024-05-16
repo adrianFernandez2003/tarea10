@@ -12,3 +12,7 @@ export const getSessions = async (): Promise<Session[]> => {
   return data || []; 
 }
 
+export const createSesionProducto = async (session: Session): Promise<void> => {
+  const { error} = await supabase.from("sesiones").insert(session);
+  if (error) throw error;
+}

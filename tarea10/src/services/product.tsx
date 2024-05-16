@@ -12,3 +12,7 @@ export const getProducts = async (): Promise<Product[]> => {
   return data || []; 
 }
 
+export const createProduct = async (product: Product): Promise<void> => {
+  const { error} = await supabase.from("productos").insert(product);
+  if (error) throw error;
+}

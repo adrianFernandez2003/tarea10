@@ -1,12 +1,12 @@
 export interface Product {
-  idProduct: number;
-  descripcion: string;
-  precio: number;
-  fk_categoria: number;
-  fechaCreacion?: Date | null;
-  fechaActualizacion?: Date | null;
-  fk_creadoPor: number;
-  fk_actualizadoPor?: number;
-  fechaEliminacion?: Date | null;
-  fk_eliminadoPor: number;
+  idproducto?: number;
+  descripcion?: string;
+  precio?: number;
+  fk_categoria?: number;
+  fechacreacion?: Date | null;
+  fechaactualizacion?: Date | null;
+  fk_creadopor?: number;
+  fk_actualizadopor?: number;
+  fechaeliminacion?: Date | null;
+  fk_eliminadopor?: number;
   }

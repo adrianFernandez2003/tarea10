@@ -2,12 +2,15 @@ import { Table } from "antd";
 import { useEffect, useState } from "react";
 import { Button, Drawer, Form, Input } from 'antd';
 import { Gender } from "../models/gender";
-import { getGenders } from "../services/gender";
+import { createGender, getGenders } from "../services/gender";
 import DrawerFooter from "./DrawerFooter";
+import supabase from "../utils/supabase";
 
 const GendersTable: React.FC = () => {
 	const [genders, setGenders] = useState<Gender[]>([]);
   const [open, setOpen] = useState(false);
+  const [genero, setGenero] = useState<string>("");
+
 
   const showDrawer = () => {
     setOpen(true);
@@ -71,16 +74,47 @@ const GendersTable: React.FC = () => {
             key: 'fk_eliminadopor'
           },
 	];
+  const handleSubmit = async () => {
+    try {
+      const currentDateTime = new Date();
+      // Consultar el ID máximo actual en la tabla direccion
+      const maxIdResponse = await supabase
+        .from("genero")
+        .select("idgenero")
+        .order("idgenero", { ascending: false })
+        .limit(1);
+  
+      const maxId = maxIdResponse.data?.[0]?.idgenero || 0;
+      const newId = maxId + 1;
+  
+      // Crear el objeto de dirección con el nuevo ID
+      const categoryInput: Gender = {
+        idgenero: newId,
+        genero,
+        fechacreacion: currentDateTime
+      };
+  
+      // Insertar el nuevo registro en la base de datos
+      await createGender(categoryInput);
+  
+      // Actualizar la lista de direcciones después de la inserción
+      const uptatedCategory = await getGenders();
+      setGenders(uptatedCategory);
+      onClose();
+    } catch (error) {
+      console.error("Error creating direccion:", error);
+    }
+  };
 
 	return (
 		<>
           <Button type="primary" onClick={showDrawer}>
         Open
       </Button>
-      <Drawer title="Basic Drawer" onClose={onClose} open={open} footer={<DrawerFooter />}>
+      <Drawer title="Basic Drawer" onClose={onClose} open={open} footer={<DrawerFooter createRecord={handleSubmit}/>}>
       <Form>
           <Form.Item label='genero' name='genero' rules={[{ required: true, message: 'Ingrese un genero' }]}>
-            <Input/>
+            <Input value={genero} onChange={(e) => setGenero(e.target.value)}/>
           </Form.Item>
         </Form>
       </Drawer>

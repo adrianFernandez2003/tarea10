@@ -1,16 +1,16 @@
 export interface Customer {
-    idCliente: number;
-    nombre: string;
-    apellido: string;
-    fechaNac?: Date | null;
-    fk_genero: number;
-    telefono: string;
-    correo: string;
-    fk_direccion: number;
-    fechaCreacion?: Date | null;    
-    fechaActualizacion?: Date | null;
-    fk_creadoPor: number;
-    fk_actualizadoPor?: number;
-    fechaEliminacion?: Date | null;
-    fk_eliminadoPor: number;
+    idclientes?: number;
+    nombre?: string;
+    apellido?: string;
+    fechanac?: Date | null;
+    fk_genero?: number;
+    telefono?: string;
+    correo?: string;
+    fk_direccion?: number;
+    fechacreacion?: Date | null;    
+    fechaactualizacion?: Date | null;
+    fk_creadorpor?: number;
+    fk_actualizadopor?: number;
+    fechaeliminado?: Date | null;
+    fk_eliminadopor?: number;
     }

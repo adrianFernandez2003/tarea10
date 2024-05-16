@@ -1,7 +1,7 @@
 export interface User {
-  IdUsuario: number;
-  nombre: string;
-  fechaCreacion?: Date | null;
-  fechaActualizacion: Date;
-  fechaEliminacion?: Date | null;
+  idusuario?: number;
+  nombre?: string;
+  fechacreacion?: Date | null;
+  fechaactualizacion?: Date;
+  fechaeliminacion?: Date | null;
   }

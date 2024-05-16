@@ -12,3 +12,7 @@ export const getCustomers = async (): Promise<Customer[]> => {
   return data || []; 
 }
 
+export const createCustomer = async (customer: Customer): Promise<void> => {
+  const { error} = await supabase.from("clientes").insert(customer);
+  if (error) throw error;
+}
